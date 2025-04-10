@@ -13,30 +13,78 @@
             background-color: #eef2f3;
             text-align: center;
         }
-        header {
-            background: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
+        .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 22px;
+}
+
+header {
+    background: linear-gradient(to right, #05011b, #114d89);
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-bottom: 4px solid #23a9ce;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+}
+
+nav ul li a:hover {
+    color: #ffeb3b;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
         main {
             padding-top: 120px;
             display: flex;
@@ -56,26 +104,25 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
         }
         .vehicle-card {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            width: 250px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            width: 280px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            overflow: hidden;
             transition: transform 0.3s;
+            position: relative;
         }
         .vehicle-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
         }
         .carousel-container {
             position: relative;
             width: 100%;
-            height: 150px;
+            height: 160px;
             overflow: hidden;
-            border-radius: 8px;
         }
         .carousel {
             display: flex;
@@ -83,8 +130,9 @@
         }
         .carousel img {
             width: 100%;
-            height: 150px;
-            border-radius: 8px;
+            height: 160px;
+            object-fit: cover;
+            display: none;
         }
         .prev, .next {
             position: absolute;
@@ -100,64 +148,168 @@
         }
         .prev { left: 5px; }
         .next { right: 5px; }
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #e53935;
+            color: white;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 5;
+        }
+        .vehicle-info {
+            padding: 15px;
+        }
+        .vehicle-info h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .vehicle-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .details {
+            font-size: 13px;
+            margin-top: 10px;
+            color: #555;
+        }
+        .rent-button {
+            background-color: #0d47a1;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            transition: background-color 0.3s;
+        }
+        .rent-button:hover {
+            background-color: #1565c0;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Sistema de Aluguel de Carros</h1>
-        <nav>
-            <ul>
-                <li><a href="dashboard.html">Dashboard</a></li>
-            </ul>
-        </nav>
+        <div class="header-container">
+            <div class="logo">
+                🚗 <span>AlugaFácil</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="#">Veículos</a></li>
+                    <li><a href="#">Reservas</a></li>
+                    <li><a href="#">Perfil</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     
+
     <main>
         <div class="container">
             <h2>Gestão de Veículos</h2>
             <div class="vehicle-list">
+
+                <!-- Card 1 - Honda Civic -->
                 <div class="vehicle-card">
-                    <div class="carousel-container" id="car-1">
-                        <button class="prev" onclick="changeImage(-1, 'car-1')">&#10094;</button>
-                        <div class="carousel" id="carousel-car-1">
-                            <img src="imagens/imgcivic1.jpg" alt="Carro">
-                            <img src="imagens/imgcivic2.jpg" alt="Carro">
-                            <img src="imagens/imgcivic3.jpg" alt="Carro">
-                            <img src="imagens/imgcivic4.jpg" alt="Carro">
-                            <img src="imagens/imgcivic5.jpg" alt="Carro">
-                            <img src="imagens/imgcivic6.jpg" alt="Carro">
-                            <img src="imagens/imgcivic7.jpg" alt="Carro">
-                            <img src="imagens/imgcivic8.jpg" alt="Carro"> <img src="imagens/imgcivic9.jpg" alt="Carro">
-                            <img src="imagens/imgcivic10.jpg" alt="Carro">
-                            <img src="imagens/imgcivic11.jpg" alt="Carro">
-                            <img src="imagens/imgcivic12.jpg" alt="Carro">
+                    <div class="carousel-container">
+                        <span class="badge">MEGA FEIRÃO</span>
+                        <button class="prev" onclick="event.stopPropagation(); changeImage(-1, 'carousel-car-1')">&#10094;</button>
+                        <div class="carousel" id="carousel-car-1" data-index="0">
+                            <img src="imagens/imgcivic1.jpg" alt="Civic">
+                            <img src="imagens/imgcivic2.jpg" alt="Civic">
                         </div>
-                        <button class="next" onclick="changeImage(1, 'car-1')">&#10095;</button>
+                        <button class="next" onclick="event.stopPropagation(); changeImage(1, 'carousel-car-1')">&#10095;</button>
                     </div>
-                    <h3>Carro 1</h3>
-                    <p>Modelo: Sedan</p>
-                    <p>Preço: R$ 150/dia</p>
+                    <div class="vehicle-info">
+                        <h3>Honda Civic</h3>
+                        <p>Modelo: Sedan</p>
+                        <p class="details">Ano: 2020 | 50.000 km | Curitiba - PR</p>
+                        <p><strong>R$ 150/dia</strong></p>
+                    </div>
+                    <button class="rent-button" onclick="rentCar('Honda Civic')">Alugar agora</button>
                 </div>
+            
+                <!-- Card 2 - Toyota Corolla -->
+                <div class="vehicle-card">
+                    <div class="carousel-container">
+                        <span class="badge">MEGA FEIRÃO</span>
+                        <button class="prev" onclick="event.stopPropagation(); changeImage(-1, 'carousel-car-2')">&#10094;</button>
+                        <div class="carousel" id="carousel-car-2" data-index="0">
+                            <img src="imagens/imgcorolla1.webp" alt="Corolla">
+                            <img src="imagens/imgcorolla2.webp" alt="Corolla">
+                        </div>
+                        <button class="next" onclick="event.stopPropagation(); changeImage(1, 'carousel-car-2')">&#10095;</button>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Toyota Corolla</h3>
+                        <p>Modelo: Sedan</p>
+                        <p class="details">Ano: 2021 | 40.000 km | Joinville - SC</p>
+                        <p><strong>R$ 170/dia</strong></p>
+                    </div>
+                    <button class="rent-button" onclick="rentCar('Toyota Corolla')">Alugar agora</button>
+                </div>
+            
+                <!-- Card 3 - Toyota Hilux -->
+                <div class="vehicle-card">
+                    <div class="carousel-container">
+                        <span class="badge">MEGA FEIRÃO</span>
+                        <button class="prev" onclick="event.stopPropagation(); changeImage(-1, 'carousel-car-3')">&#10094;</button>
+                        <div class="carousel" id="carousel-car-3" data-index="0">
+                            <img src="imagens/imghilux1.webp" alt="Hilux">
+                            <img src="imagens/imghilux2.webp" alt="Hilux">
+                        </div>
+                        <button class="next" onclick="event.stopPropagation(); changeImage(1, 'carousel-car-3')">&#10095;</button>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>Toyota Hilux</h3>
+                        <p>Modelo: Caminhonete</p>
+                        <p class="details">Ano: 2022 | 30.000 km | São Paulo - SP</p>
+                        <p><strong>R$ 250/dia</strong></p>
+                    </div>
+                    <button class="rent-button" onclick="rentCar('Toyota Hilux')">Alugar agora</button>
+                </div>
+            
+            </div>
+            
             </div>
         </div>
     </main>
-    
+
     <script>
-        function changeImage(direction, carId) {
-            const carousel = document.querySelector(`#carousel-${carId}`);
+        function changeImage(direction, carouselId) {
+            const carousel = document.getElementById(carouselId);
             const images = carousel.querySelectorAll("img");
-            let currentIndex = [...images].findIndex(img => img.style.display !== "none");
-            if (currentIndex === -1) currentIndex = 0;
-            images.forEach(img => img.style.display = "none");
-            let newIndex = (currentIndex + direction + images.length) % images.length;
-            images[newIndex].style.display = "block";
+            let currentIndex = parseInt(carousel.dataset.index) || 0;
+
+            images[currentIndex].style.display = "none";
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            images[currentIndex].style.display = "block";
+
+            carousel.dataset.index = currentIndex;
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".carousel img").forEach((img, index) => {
-                img.style.display = index === 0 ? "block" : "none";
+            document.querySelectorAll(".carousel").forEach(carousel => {
+                const images = carousel.querySelectorAll("img");
+                if (images.length > 0) images[0].style.display = "block";
+                carousel.dataset.index = 0;
             });
         });
+
+        function rentCar(modelo) {
+            alert(`Você selecionou o carro: ${modelo}.\nRedirecionando para a página de aluguel...`);
+            // window.location.href = `aluguel.html?carro=${encodeURIComponent(modelo)}`;
+        }
     </script>
 </body>
 </html>
