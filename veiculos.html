@@ -307,9 +307,21 @@ nav ul li a:hover::after {
         });
 
         function rentCar(modelo) {
-            alert(`Você selecionou o carro: ${modelo}.\nRedirecionando para a página de aluguel...`);
-            // window.location.href = `aluguel.html?carro=${encodeURIComponent(modelo)}`;
-        }
+    switch (modelo) {
+        case 'Honda Civic':
+            window.location.href = 'detalhes_carro1.html';
+            break;
+        case 'Toyota Corolla':
+            window.location.href = 'detalhes_carro2.html';
+            break;
+        case 'Toyota Hilux':
+            window.location.href = 'detalhes_carro3.html';
+            break;
+        default:
+            alert(`Carro não reconhecido: ${modelo}`);
+    }
+}
+
     </script>
 </body>
 </html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Toyota Corolla - Detalhes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #eef2f3;
+    }
+
+    header {
+      background: linear-gradient(to right, #05011b, #114d89);
+      color: white;
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-bottom: 4px solid #23a9ce;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo span {
+      font-weight: 700;
+      font-size: 22px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      color: #ffeb3b;
+    }
+
+    main {
+      padding-top: 120px;
+      display: flex;
+      justify-content: center;
+      padding-bottom: 50px;
+    }
+
+    .details-container {
+      background: white;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .car-title {
+      text-align: center;
+      font-size: 28px;
+      color: #00084d;
+    }
+
+    .carousel-multi-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 10px;
+      box-sizing: border-box;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-multi-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-multi-track img {
+      width: calc(100% / 3);
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 0 5px;
+    }
+
+    .prev-multi,
+    .next-multi {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(1, 0, 36, 0.8);
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 30%;
+      z-index: 10;
+    }
+
+    .prev-multi { left: 10px; }
+    .next-multi { right: 10px; }
+
+    .car-info {
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #0d47a1;
+    }
+
+    .rent-button {
+      background-color: #0d47a1;
+      color: white;
+      padding: 15px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+      max-width: 300px;
+      align-self: center;
+    }
+
+    .rent-button:hover {
+      background-color: #1565c0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        🚗 <span>AlugaFácil</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="veiculos.html">Veículos</a></li>
+          <li><a href="#">Reservas</a></li>
+          <li><a href="#">Perfil</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="details-container">
+      <h2 class="car-title">Toyota Corolla 2023</h2>
+
+      <div class="carousel-multi-container">
+        <button class="prev-multi" onclick="changeMultiImage(-1)">&#10094;</button>
+        <div class="carousel-multi-track" id="carouselMulti">
+          <img src="imagens/imgcorolla1.webp" alt="Corolla 1">
+          <img src="imagens/imgcorolla2.webp" alt="Corolla 2">
+          <img src="imagens/imgcorolla3.webp" alt="Corolla 3">
+          <img src="imagens/imgcorolla4.webp" alt="Corolla 4">
+        </div>
+        <button class="next-multi" onclick="changeMultiImage(1)">&#10095;</button>
+      </div>
+
+      <div class="car-info">
+        <p><span class="highlight">Modelo:</span> Sedan</p>
+        <p><span class="highlight">Ano:</span> 2023</p>
+        <p><span class="highlight">Quilometragem:</span> 18.000 km</p>
+        <p><span class="highlight">Localização:</span> Joinville - SC</p>
+        <p><span class="highlight">Combustível:</span> Flex</p>
+        <p><span class="highlight">Câmbio:</span> CVT</p>
+        <p><span class="highlight">Cor:</span> Prata</p>
+        <p><span class="highlight">Diária:</span> <strong>R$ 145,00</strong></p>
+        <p><span class="highlight">Descrição:</span> O Toyota Corolla oferece uma experiência premium com ótimo consumo, segurança e tecnologia embarcada para todos os tipos de viagens.</p>
+      </div>
+
+      <button class="rent-button" onclick="alugar()">Alugar este carro</button>
+    </div>
+  </main>
+
+  <script>
+    function alugar() {
+      alert("Redirecionando para finalização da reserva...");
+    }
+
+    let currentSlide = 0;
+    const totalSlides = 4;
+    const slidesPerView = 3;
+
+    function changeMultiImage(direction) {
+      const carousel = document.getElementById("carouselMulti");
+      const maxSlide = totalSlides - slidesPerView;
+
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = 0;
+      if (currentSlide > maxSlide) currentSlide = maxSlide;
+
+      const shift = currentSlide * (100 / slidesPerView);
+      carousel.style.transform = `translateX(-${shift}%)`;
+    }
+  </script>
+</body>
+</html>

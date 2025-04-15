@@ -1,15 +1,15 @@
-<!-- clientes.html -->
+<!-- reservas.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clientes - AlugaFácil</title>
+  <title>Reservas - AlugaFácil</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #e3f2fd;
+      background-color: #f5f5f5;
       margin: 0;
       padding: 0;
     }
@@ -72,71 +72,73 @@
       text-align: center;
     }
     th {
-      background-color: #1976d2;
+      background-color: #1565c0;
       color: white;
     }
     tr:nth-child(even) {
-      background-color: #f0f8ff;
+      background-color: #e3f2fd;
     }
+    .status {
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 5px;
+    }
+    .ativa { color: green; }
+    .pendente { color: orange; }
+    .encerrada { color: red; }
     .actions i {
       margin: 0 6px;
       cursor: pointer;
       color: #333;
     }
     .actions i:hover {
-      color: #1976d2;
-    }
-    img.avatar {
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      color: #1565c0;
     }
   </style>
 </head>
 <body>
   <header>
     <div class="header-container">
-      <div class="logo">🚗 <span>AlugaFácil</span></div>
+      <div class="logo">📅 <span>AlugaFácil</span></div>
       <nav>
         <ul>
           <li><a href="dashboard.html">Dashboard</a></li>
           <li><a href="veiculos.html">Veículos</a></li>
-          <li><a href="reservas.html">Reservas</a></li>
+          <li><a href="clientes.html">Clientes</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <h2>Lista de Clientes</h2>
+    <h2>Reservas de Veículos</h2>
     <table>
       <thead>
         <tr>
-          <th>Foto</th>
-          <th>Nome</th>
-          <th>CPF</th>
-          <th>Telefone</th>
-          <th>Email</th>
+          <th>Cliente</th>
+          <th>Veículo</th>
+          <th>Data Início</th>
+          <th>Data Fim</th>
+          <th>Status</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><img src="https://i.pravatar.cc/40?img=1" class="avatar" alt="Foto"></td>
-          <td>Maria Silva</td>
-          <td>123.456.789-00</td>
-          <td><a href="tel:+5547999991234">(47) 99999-1234</a></td>
-          <td><a href="mailto:maria@email.com">maria@email.com</a></td>
+          <td>João Pedro</td>
+          <td>Hilux 2022</td>
+          <td>12/04/2025</td>
+          <td>15/04/2025</td>
+          <td><span class="status ativa">Ativa</span></td>
           <td class="actions">
             <i class="fas fa-eye" title="Visualizar"></i>
             <i class="fas fa-pen" title="Editar"></i>
-            <i class="fas fa-trash" title="Excluir"></i>
+            <i class="fas fa-trash" title="Cancelar"></i>
           </td>
         </tr>
-        <!-- Mais clientes aqui -->
+        <!-- Mais reservas aqui -->
       </tbody>
     </table>
   </main>
 </body>
 </html>
-
