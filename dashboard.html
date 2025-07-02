@@ -15,7 +15,7 @@
     referrerpolicy="no-referrer"
   />
 
-  <style>
+   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -174,20 +174,122 @@
         align-items: center;
       }
     }
+    .footer {
+  background: linear-gradient(to right, #05011b, #114d89);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.footer-links li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.footer-links li a:hover {
+  color: #ffeb3b;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: #cccccc;
+  margin-top: 10px;
+}
+.footer-contact {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.footer-contact a {
+  color: #ffffff;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.footer-contact a:hover {
+  color: #25d366; /* Verde WhatsApp */
+}
+.footer-social {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.footer-social img {
+  width: 24px;
+  height: 24px;
+  filter: invert(100%); /* Deixa os ícones brancos */
+  transition: transform 0.3s ease;
+}
+
+.footer-social a:hover img {
+  transform: scale(1.2);
+}
+.about-section {
+  margin-top: 50px;
+  padding: 30px 40px;
+  background-color: #f8fbff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-section h3 {
+  font-size: 26px;
+  color: #114d89;
+  margin-bottom: 15px;
+}
+
+.about-section p {
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.6;
+}
+
+
   </style>
 </head>
 <body>
   <header>
     <div class="header-container">
       <div class="logo">
-        🚗 <span>AlugaFácil</span>
+        <span>AlugaFácil</span>
       </div>
       <nav>
         <ul>
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="veiculos.html">Veículos</a></li>
-          <li><a href="#">Reservas</a></li>
-          <li><a href="#">Perfil</a></li>
+         
         </ul>
       </nav>
     </div>
@@ -214,6 +316,49 @@
         </a>
       </div>
     </div>
+    <section class="about-section">
+  <h3>Sobre a AlugaFácil</h3>
+  <p>
+    A <strong>AlugaFácil</strong> é especializada em oferecer soluções práticas, rápidas e seguras para locação de veículos.
+    Com uma frota moderna e atendimento humanizado, conectamos você ao carro ideal para cada momento, seja para viagens, compromissos
+    profissionais ou lazer. Nosso compromisso é garantir conforto, economia e confiança em cada reserva.
+  </p>
+</section>
+
+    
   </main>
+  <footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <span></span>
+    </div>
+    <p>Conectando você ao carro ideal com conforto e segurança.</p>
+
+    <ul class="footer-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="clientes.html">Clientes</a></li>
+      <li><a href="veiculos.html">Veículos</a></li>
+      <li><a href="reservas.html">Reservas</a></li>
+    </ul>
+
+    <div class="footer-contact">
+      <p>📞 <strong>Fale Conosco:</strong> <a href="https://wa.me/5547991744754" target="_blank">(47) 99174-4754</a></p>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://wa.me/5547991744754" target="_blank" aria-label="WhatsApp">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" />
+      </a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" />
+      </a>
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" />
+      </a>
+    </div>
+
+    <p class="footer-copy">© 2025 AlugaFácil. Todos os direitos reservados.</p>
+  </div>
+</footer>
 </body>
 </html>

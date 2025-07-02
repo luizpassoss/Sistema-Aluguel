@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Carros</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+            body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #eef2f3;
+      text-align: center;
+    }
+           .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo span {
+    font-weight: 700;
+    font-size: 22px;
+}
+
+header {
+    background: linear-gradient(to right, #05011b, #114d89);
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-bottom: 4px solid #23a9ce;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+}
+
+nav ul li a:hover {
+    color: #ffeb3b;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+        main {
+            padding-top: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            width: 80%;
+            max-width: 1000px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+        .vehicle-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .vehicle-card {
+            background: white;
+            border-radius: 12px;
+            width: 280px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: none;
+        }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .prev { left: 5px; }
+        .next { right: 5px; }
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #e53935;
+            color: white;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 5;
+        }
+        .vehicle-info {
+            padding: 15px;
+        }
+        .vehicle-info h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .vehicle-info p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .details {
+            font-size: 13px;
+            margin-top: 10px;
+            color: #555;
+        }
+        .rent-button {
+            background-color: #0d47a1;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            transition: background-color 0.3s;
+        }
+        .rent-button:hover {
+            background-color: #1565c0;
+        }
+     .carro-card {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #fff;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.carro-card input {
+    padding: 0.5rem 0.75rem;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.botoes-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.btn-salvar {
+    background-color: #1565c0;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.btn-excluir {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-excluir:hover {
+    color: #a80000;
+}
+
+
+
+        .carros-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+      <header>
+    <div class="header-container">
+      <div class="logo"><span>AlugaFácil</span></div>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="clientes.html">Clientes</a></li>
+          <li><a href="veiculos.html">Veículos</a></li>
+          <li><a href="reservas.html">Reservas</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+   
+ <main>
+    <div class="container">
+      <h2>Meus carros</h2>
+      <div class="carros-container" id="carros-container">
+          <div class="carro-card">
+  <input type="text" value="Modelo" />
+  <input type="text" value="Marca" />
+  <input type="number" value="Ano" />
+  <input type="number" value="Preço" />
+  <div class="botoes-card">
+    <button class="btn-excluir" title="Excluir">
+      <i data-lucide="trash-2"></i>
+    </button>
+    <button class="btn-salvar">Salvar</button>
+  </div>
+</div>
+      </div>
+        
+</div>
+    </div>
+   
+
+  </main>
+    <script>
+        async function carregarMeusCarros() {
+            try {
+                const resposta = await fetch('http://localhost:3000/api/carros');
+                const carros = await resposta.json();
+
+                const container = document.getElementById('carros-container');
+                container.innerHTML = '';
+
+               carros.forEach(carro => {
+    const card = document.createElement('div');
+    card.className = 'carro-card';
+    card.innerHTML = `
+        <input type="text" value="${carro.modelo}" placeholder="Modelo" id="modelo-${carro.id_carro}">
+        <input type="text" value="${carro.marca}" placeholder="Marca" id="marca-${carro.id_carro}">
+        <input type="number" value="${carro.ano}" placeholder="Ano" id="ano-${carro.id_carro}">
+        <input type="number" value="${carro.preco_diario}" placeholder="Preço Diário" id="preco-${carro.id_carro}">
+        <div class="botoes-card">
+            <button class="btn-excluir" onclick="deletarCarro(${carro.id_carro})" title="Excluir carro">
+                <i data-lucide="trash-2"></i>
+            </button>
+            <button class="btn-salvar" onclick="atualizarCarro(${carro.id_carro})">Salvar</button>
+        </div>
+    `;
+    container.appendChild(card);
+});
+
+// Após inserir os ícones no DOM:
+lucide.createIcons();
+
+            } catch (error) {
+                alert('Erro ao carregar os carros');
+            }
+        }
+
+        async function atualizarCarro(id) {
+            const modelo = document.getElementById(`modelo-${id}`).value;
+            const marca = document.getElementById(`marca-${id}`).value;
+            const ano = document.getElementById(`ano-${id}`).value;
+            const preco = document.getElementById(`preco-${id}`).value;
+
+            try {
+                const resposta = await fetch(`http://localhost:3000/api/carros/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ modelo, marca, ano, preco })
+                });
+
+                if (resposta.ok) {
+                    alert('Carro atualizado com sucesso!');
+                    carregarMeusCarros();
+                } else {
+                    alert('Erro ao atualizar o carro');
+                }
+            } catch (error) {
+                alert('Erro ao atualizar o carro');
+            }
+        }
+
+        async function deletarCarro(id) {
+            if (!confirm('Tem certeza que deseja excluir este carro?')) return;
+
+            try {
+                const resposta = await fetch(`http://localhost:3000/api/carros/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (resposta.ok) {
+                    alert('Carro excluído com sucesso!');
+                    carregarMeusCarros();
+                } else {
+                    alert('Erro ao excluir o carro');
+                }
+            } catch (error) {
+                alert('Erro ao excluir o carro');
+            }
+        }
+
+        // Carrega os carros assim que a página for carregada
+        document.addEventListener('DOMContentLoaded', carregarMeusCarros);
+    </script>
+</body>
+</html>
