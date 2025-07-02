@@ -1,31 +1,29 @@
 const express = require("express");
-const cors = require("cors"); // Para evitar problemas de CORS caso precise
-const carrosRoutes = require("./routes/carrosRoutes"); // Importa as rotas dos carros
+const cors = require("cors");
+
+const carrosRoutes = require("./routes/carrosRoutes");
+const authRoutes = require("./routes/auth");
+const clientesRoutes = require("./routes/clientesRoutes");
+const alugueisRoutes = require("./routes/alugueisRoutes");
 
 const app = express();
 
-// Middleware para permitir JSON
 app.use(cors());
 app.use(express.json());
-
-
 
 
 app.get("/", (req, res) => {
     res.send("Servidor rodando! 🚀");
 });
 
-
-app.use("/api", carrosRoutes);
-
+// Rotas
+app.use("/api/carros", carrosRoutes);
+app.use("/api/clientes", clientesRoutes);
+app.use("/api/alugueis", alugueisRoutes);
+app.use("/login", authRoutes);
+app.use('/uploads', express.static('uploads'));
 
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-const clientesRoutes = require("./routes/clientesRoutes");
-app.use("/api", clientesRoutes);
-
-const alugueisRoutes = require("./routes/alugueisRoutes");
-app.use("/api", alugueisRoutes);

@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../config/db');
 
 // Listar todos os aluguéis
-router.get('/alugueis', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM alugueis');
         res.json(rows);
@@ -13,7 +13,7 @@ router.get('/alugueis', async (req, res) => {
 });
 
 // Buscar aluguel por ID
-router.get('/alugueis/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const [rows] = await db.query('SELECT * FROM alugueis WHERE id_aluguel = ?', [id]);
@@ -27,11 +27,17 @@ router.get('/alugueis/:id', async (req, res) => {
 });
 
 // Criar um novo aluguel (com cálculo automático de valor_total)
-router.post('/alugueis', async (req, res) => {
+router.post('/', async (req, res) => {
     const { id_cliente, id_carro, data_inicio, data_fim } = req.body;
 
     try {
-        // Buscar o preco_diario do carro
+        // Verificar se cliente existe
+        const [clienteRows] = await db.query('SELECT * FROM clientes WHERE id_cliente = ?', [id_cliente]);
+        if (clienteRows.length === 0) {
+            return res.status(404).json({ error: 'Cliente não encontrado' });
+        }
+
+        // Verificar se carro existe
         const [carroRows] = await db.query('SELECT preco_diario FROM carros WHERE id_carro = ?', [id_carro]);
         if (carroRows.length === 0) {
             return res.status(404).json({ error: 'Carro não encontrado' });
@@ -73,15 +79,20 @@ router.post('/alugueis', async (req, res) => {
     }
 });
 
-
 // Atualizar aluguel
-router.put('/alugueis/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { id_cliente, id_carro, data_inicio, data_fim } = req.body;
 
     try {
-        const [carroRows] = await db.query('SELECT preco_diario FROM carros WHERE id_carro = ?', [id_carro]);
+        // Verificar se cliente existe
+        const [clienteRows] = await db.query('SELECT * FROM clientes WHERE id_cliente = ?', [id_cliente]);
+        if (clienteRows.length === 0) {
+            return res.status(404).json({ error: 'Cliente não encontrado' });
+        }
 
+        // Verificar se carro existe
+        const [carroRows] = await db.query('SELECT preco_diario FROM carros WHERE id_carro = ?', [id_carro]);
         if (carroRows.length === 0) {
             return res.status(404).json({ error: 'Carro não encontrado' });
         }
@@ -115,9 +126,8 @@ router.put('/alugueis/:id', async (req, res) => {
     }
 });
 
-
 // Deletar aluguel
-router.delete('/alugueis/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const [result] = await db.query('DELETE FROM alugueis WHERE id_aluguel = ?', [id]);
